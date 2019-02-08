@@ -153,7 +153,6 @@
   <ItemGroup>
     <ClCompile Include="ConsoleApplication2.cpp" />
     <ClCompile Include="inputNeuron.cpp" />
-    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="net.cpp" />
     <ClCompile Include="neuron.cpp" />
     <ClCompile Include="Timer.cpp" />
