@@ -3,46 +3,21 @@
 #include "inputNeuron.h"
 #include "neuron.h"
 using namespace std;
-//class inputLayer {
-//public:
-//	inputLayer(size_t size) {
-//		for (size_t i = 0; i < size; i++)
-//		{
-//			input_layer.push_back(new inputNeuron());
-//		}
-//	}
-//	~inputLayer()
-//	{
-//		for (size_t i = 0; i < input_layer.size(); i++)
-//		{
-//			delete input_layer[i];
-//		}
-//	}
-//	void activate(std::vector<double> &inputValues) {
-//		for (size_t i = 0; i < input_layer.size(); i++)
-//		{
-//			input_layer[i]->set_activation(inputValues[i]);
-//		}
-//	}
-//private:
-//	std::vector<inputNeuron*> input_layer;
-//};
 class Layer
 {
 public:
-	Layer(size_t size,size_t previous) {
+	Layer(size_t size,size_t previous):errors(size) {
 		for (size_t i = 0; i < size; i++)
 		{
 			layer.push_back(new neuron(previous));
 		}
-
+		//errors.reserve(size);
 	}
-	Layer(size_t size) {
+	Layer(size_t size):errors(size) {
 		for (size_t i = 0; i < size; i++)
 		{
 			layer.push_back(new inputNeuron());
 		}
-
 	}
 	~Layer() {
 		for (size_t i = 0; i < layer.size(); i++)
@@ -66,7 +41,8 @@ public:
 	void lastLayerDelta(vector<double> &correctActivations) {
 		for (size_t i = 0; i < correctActivations.size(); i++)
 		{
-			errors.push_back((layer[i]->get_activation() - correctActivations[i]));
+			//errors.push_back((layer[i]->get_activation() - correctActivations[i]));
+			errors[i] = layer[i]->get_activation() - correctActivations[i];
 		}
 	}
 	vector<double> layerDelta(Layer *previousLayer) {
@@ -102,5 +78,3 @@ private:
 	std::vector<inputNeuron*> layer;
 	std::vector<double> errors;
 };
-
-//typename Layer<int>

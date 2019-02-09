@@ -24,13 +24,11 @@
 			z += previous_neurons[i]->get_activation() * weights[i];
 		}
 		z += bias;
-		activation = 1 / (1 + exp(-z));// 0..1
-		//activation = z + 0.5;
+		activation = 1 / (1 + exp(-z));
 		//cout << "activation: " << activation << endl;
 	}
 	double neuron::sigmoidDerivativeZ() {
 		return exp(-z) / ((1 + exp(-z))*(1 + exp(-z)));
-		//return z - 0.5;
 	}
 	double& neuron::getZ() {
 		return z;

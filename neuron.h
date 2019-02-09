@@ -5,7 +5,6 @@
 #include<random>
 #include<chrono>
 #include"inputNeuron.h"
-//#include"Layer.h"
 
 class neuron :public inputNeuron {
 public:
