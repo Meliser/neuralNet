@@ -15,7 +15,7 @@
 	}
 	neuron::~neuron()
 	{
-		cout << "~neuron()" << endl;
+		//cout << "~neuron()" << endl;
 	}
 	void neuron::activate(vector<inputNeuron*> &previous_neurons) {
 		z = 0;
