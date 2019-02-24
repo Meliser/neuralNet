@@ -16,7 +16,7 @@
 		}
 	}
 	void net::feedForward(vector<double> &inputActivations) {
-		layers[0]->activate(inputActivations);
+		layers[0]->activateLayer(inputActivations);
 		for (size_t i = 1; i < layers.size(); i++)
 		{
 			layers[i]->forward(layers[i - 1]);
@@ -31,6 +31,6 @@
 			previousErrors = layers[i]->layerDelta(layers[i-1]);
 			layers[i - 1]->set_errors(previousErrors);
 		}
-		//layers[layers.size() - 1]->get_errors().clear();
+		
 	}
 
