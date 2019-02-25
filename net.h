@@ -10,6 +10,7 @@ public:
 	~net();
 	void feedForward(vector<double> &inputActivations);
 	void backPropogation(vector<double> &correctActivations);
+	const vector<double> getResult();
 private:
 	static double learningRate;
 	vector<Layer*> layers;

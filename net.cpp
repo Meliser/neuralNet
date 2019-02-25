@@ -33,4 +33,7 @@
 		}
 		
 	}
+	const vector<double> net::getResult() {
+		return layers.back()->get_layer_activations();
+	}
 

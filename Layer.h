@@ -71,6 +71,15 @@ public:
 	size_t getSize() {
 		return layer.size();
 	}
+	vector<double> get_layer_activations() {
+		vector<double> layer_activations;
+		for (size_t i = 0; i < layer.size(); i++)
+		{
+			layer_activations.push_back(layer[i]->get_activation());
+
+		}
+		return layer_activations;
+	}
 private:
 	std::vector<inputNeuron*> layer;
 	std::vector<double> errors;
