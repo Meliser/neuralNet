@@ -10,9 +10,8 @@
 	}
 	net::~net()
 	{
-		for (size_t i = 0; i < layers.size(); i++)
-		{
-			delete layers[i];
+		for (auto layer:layers){
+			delete layer;
 		}
 	}
 	void net::feedForward(vector<double> &inputActivations) {
@@ -28,12 +27,19 @@
 		layers[layers.size() - 1]->lastLayerDelta(correctActivations);
 		for (size_t i = layers.size() - 1; i > 0; i--)
 		{
-			previousErrors = layers[i]->layerDelta(layers[i-1]);
+			previousErrors = layers[i]->layerDelta(layers[i-1]);// ?
 			layers[i - 1]->set_errors(previousErrors);
 		}
 		
 	}
 	const vector<double> net::getResult() {
 		return layers.back()->get_layer_activations();
+	}
+
+	void net::firstInit(){
+		for (size_t i = 1; i < layers.size(); i++)
+		{
+			layers[i]->firstInitOfLayer();
+		}
 	}
 

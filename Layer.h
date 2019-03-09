@@ -6,22 +6,21 @@ using namespace std;
 class Layer
 {
 public:
-	Layer(size_t size,size_t previous):errors(size) {
-		for (size_t i = 0; i < size; i++)
+	Layer(size_t size,size_t previous):errors(size),layer(size) {
+		for (auto &neuron_obj:layer)
 		{
-			layer.push_back(new neuron(previous));
+			neuron_obj = new neuron(previous);
 		}
 	}
-	Layer(size_t size):errors(size) {
-		for (size_t i = 0; i < size; i++)
+	Layer(size_t size):errors(size),layer(size) {
+		for (auto &inputNeuron_obj : layer)
 		{
-			layer.push_back(new inputNeuron());
+			inputNeuron_obj = new inputNeuron();
 		}
 	}
 	~Layer() {
-		for (size_t i = 0; i < layer.size(); i++)
-		{
-			delete layer[i];
+		for (auto single_neuron : layer) {
+			delete single_neuron;
 		}
 	};
 	void activateLayer(std::vector<double> &inputValues) {
@@ -31,9 +30,8 @@ public:
 		}
 	}
 	void forward(Layer *previousLayer) {
-		for (size_t i = 0; i < layer.size(); i++)
-		{
-			dynamic_cast<neuron*>(layer[i])->activate(previousLayer->layer);
+		for (auto single_neuron : layer) {
+			dynamic_cast<neuron*>(single_neuron)->activate(previousLayer->layer);
 		}
 	}
 	void lastLayerDelta(vector<double> &correctActivations) {
@@ -41,6 +39,9 @@ public:
 		{
 			errors[i] = layer[i]->get_activation() - correctActivations[i];
 		}
+	}
+	inputNeuron* at(size_t i) {
+		return layer[i];
 	}
 	vector<double> layerDelta(Layer *previousLayer) {
 		double error;
@@ -52,9 +53,9 @@ public:
 			{
 				// don't count for first layer
 				backprop_errors[j] += dynamic_cast<neuron*>(layer[i])->getWeights()[j] * error;//!!!
-				dynamic_cast<neuron*>(layer[i])->getWeights()[j] -= error * previousLayer->getByIndex(j)->get_activation();
+				dynamic_cast<neuron*>(layer[i])->getWeights()[j] -= error * previousLayer->at(j)->get_activation();
 			}
-
+			
 			dynamic_cast<neuron*>(layer[i])->getBias() -=  error;
 		}
 		return backprop_errors;
@@ -65,9 +66,7 @@ public:
 	vector<double>& get_errors() {
 		return errors;
 	}
-	inputNeuron* getByIndex(size_t i) {
-		return layer[i];
-	}
+	
 	size_t getSize() {
 		return layer.size();
 	}
@@ -79,6 +78,11 @@ public:
 
 		}
 		return layer_activations;
+	}
+	void firstInitOfLayer() {
+		for (auto single_neuron : layer) {
+			dynamic_cast<neuron*>(single_neuron)->initWeightsRandomly();
+		}
 	}
 private:
 	std::vector<inputNeuron*> layer;

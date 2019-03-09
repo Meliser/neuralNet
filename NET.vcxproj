@@ -151,8 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication2.cpp" />
     <ClCompile Include="inputNeuron.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="net.cpp" />
     <ClCompile Include="neuron.cpp" />
     <ClCompile Include="Timer.cpp" />

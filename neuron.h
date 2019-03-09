@@ -15,6 +15,7 @@ public:
 	double& getZ();
 	vector<double>& getWeights();
 	double& getBias();
+	void initWeightsRandomly();
 private:
 	vector<double> weights;
 	double bias;

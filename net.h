@@ -11,6 +11,7 @@ public:
 	void feedForward(vector<double> &inputActivations);
 	void backPropogation(vector<double> &correctActivations);
 	const vector<double> getResult();
+	void firstInit();
 private:
 	static double learningRate;
 	vector<Layer*> layers;
