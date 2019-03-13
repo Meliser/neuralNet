@@ -2,30 +2,30 @@
 #include<vector>
 #include "inputNeuron.h"
 #include "neuron.h"
+#include<boost/archive/text_oarchive.hpp>
+#include<boost/archive/text_iarchive.hpp>
 using namespace std;
 class Layer
 {
 public:
 	Layer(size_t size,size_t previous):errors(size),layer(size) {
-		for (auto &neuron_obj:layer)
-		{
+		for (auto &neuron_obj:layer){
 			neuron_obj = new neuron(previous);
 		}
 	}
 	Layer(size_t size):errors(size),layer(size) {
-		for (auto &inputNeuron_obj : layer)
-		{
+		for (auto &inputNeuron_obj : layer){
 			inputNeuron_obj = new inputNeuron();
 		}
 	}
+	Layer(){}
 	~Layer() {
 		for (auto single_neuron : layer) {
 			delete single_neuron;
 		}
 	};
 	void activateLayer(std::vector<double> &inputValues) {
-		for (size_t i = 0; i < layer.size(); i++)
-		{
+		for (size_t i = 0; i < layer.size(); i++){
 			layer[i]->set_activation(inputValues[i]);
 		}
 	}
@@ -35,8 +35,7 @@ public:
 		}
 	}
 	void lastLayerDelta(vector<double> &correctActivations) {
-		for (size_t i = 0; i < correctActivations.size(); i++)
-		{
+		for (size_t i = 0; i < correctActivations.size(); i++){
 			errors[i] = layer[i]->get_activation() - correctActivations[i];
 		}
 	}
@@ -84,7 +83,20 @@ public:
 			dynamic_cast<neuron*>(single_neuron)->initWeightsRandomly();
 		}
 	}
+	/*void fromFileInitOfLayer(vector<double> &layerWB) {
+		for (auto single_neuron : layer) {
+			dynamic_cast<neuron*>(single_neuron)->setWeights();
+		}
+	}*/
 private:
 	std::vector<inputNeuron*> layer;
 	std::vector<double> errors;
+	friend class boost::serialization::access;
+	template<class Archive>
+	void serialize(Archive & ar, const unsigned int version)
+	{
+		ar & errors;
+		ar.register_type(static_cast<neuron*>(NULL));
+		ar & layer;
+	}
 };

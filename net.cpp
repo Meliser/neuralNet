@@ -43,3 +43,20 @@
 		}
 	}
 
+	void saveInFile(net &obj,const char * filename)
+	{
+		ofstream fout(filename);
+		boost::archive::text_oarchive oa(fout);
+		oa << obj;
+		//fout.close();
+	}
+
+	void loadFromFile(net & obj, const char * filename)
+	{
+		std::ifstream fin(filename);
+		boost::archive::text_iarchive ia(fin);
+
+		// restore the schedule from the archive
+		ia >> obj;
+	}
+

@@ -2,9 +2,8 @@
 	default_random_engine neuron::engine(3);
 	uniform_real_distribution<> neuron::distr(-0.5, 0.5);
 	//add abstract class of neuron
-	neuron::neuron(size_t weightVectorSize):weights(weightVectorSize),bias(1) {
-		
-	}
+	//add class of weights and bias;
+	neuron::neuron(size_t weightVectorSize):weights(weightVectorSize),bias(1) {}
 	neuron::~neuron(){
 		cout << "~neuron()" << endl;
 	}
@@ -16,7 +15,6 @@
 		}
 		z += bias;
 		activation = 1 / (1 + exp(-z));
-		//cout << "activation: " << activation << endl;
 	}
 	double neuron::sigmoidDerivativeZ() {
 		double _exp = exp(-z);
@@ -28,8 +26,15 @@
 	vector<double>& neuron::getWeights() {
 		return weights;
 	}
+	void neuron::setWeights(vector<double>& _weights)
+	{
+		weights = _weights;//not efficient
+	}
 	double& neuron::getBias() {
 		return bias;
+	}
+	void neuron::setBias(double _bias) {
+		bias = _bias;
 	}
 	void neuron::initWeightsRandomly()
 	{
