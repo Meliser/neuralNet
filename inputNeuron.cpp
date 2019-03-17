@@ -7,5 +7,5 @@
 	}
 	inputNeuron::~inputNeuron()
 	{
-		cout << "~inputNeuron()" << endl;
+		//cout << "~inputNeuron()" << endl;
 	}

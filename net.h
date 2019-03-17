@@ -13,12 +13,12 @@ public:
 	net(initializer_list<int> &&ls);
 	~net();
 	void feedForward(vector<double> &inputActivations);
-	void backPropogation(vector<double> &correctActivations);
+	//void backPropogation(vector<double> &correctActivations);
 	const vector<double> getResult();
+	vector<Layer*>& get_layers();
 	void firstInit();
-	
 private:
-	static double learningRate;
+	static double learningRate;//add method
 	vector<Layer*> layers;
 	friend class boost::serialization::access;
 	template<class Archive>
@@ -27,5 +27,5 @@ private:
 		ar & layers;
 	}
 };
-void saveInFile(net &obj, const char* filename);
+void saveInFile(net &obj, const char* filename);// replace in Trainer class
 void loadFromFile(net &obj, const char* filename);

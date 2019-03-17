@@ -160,6 +160,7 @@
     <ClCompile Include="net.cpp" />
     <ClCompile Include="neuron.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Trainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inputNeuron.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="net.h" />
     <ClInclude Include="neuron.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Trainer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

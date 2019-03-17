@@ -3,9 +3,9 @@
 	uniform_real_distribution<> neuron::distr(-0.5, 0.5);
 	//add abstract class of neuron
 	//add class of weights and bias;
-	neuron::neuron(size_t weightVectorSize):weights(weightVectorSize),bias(1) {}
+	neuron::neuron(size_t weightVectorSize):weights(weightVectorSize),bias(0) {}
 	neuron::~neuron(){
-		cout << "~neuron()" << endl;
+		//cout << "~neuron()" << endl;
 	}
 	void neuron::activate(vector<inputNeuron*> &previous_neurons) {
 		z = 0;

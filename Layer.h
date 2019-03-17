@@ -59,10 +59,10 @@ public:
 		}
 		return backprop_errors;
 	}
-	void set_errors(vector<double> _errors) {
+	void set_errors(vector<double> &_errors) {
 		errors = _errors;
 	}
-	vector<double>& get_errors() {
+	vector<double>& get_errors() {//add const
 		return errors;
 	}
 	
@@ -83,11 +83,7 @@ public:
 			dynamic_cast<neuron*>(single_neuron)->initWeightsRandomly();
 		}
 	}
-	/*void fromFileInitOfLayer(vector<double> &layerWB) {
-		for (auto single_neuron : layer) {
-			dynamic_cast<neuron*>(single_neuron)->setWeights();
-		}
-	}*/
+
 private:
 	std::vector<inputNeuron*> layer;
 	std::vector<double> errors;

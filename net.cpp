@@ -14,26 +14,31 @@
 			delete layer;
 		}
 	}
-	void net::feedForward(vector<double> &inputActivations) {
+	void net::feedForward(vector<double> &inputActivations) {//template?
 		layers[0]->activateLayer(inputActivations);
 		for (size_t i = 1; i < layers.size(); i++)
 		{
 			layers[i]->forward(layers[i - 1]);
 		}
 	}
-	void net::backPropogation(vector<double> &correctActivations) {
-		vector<double> previousErrors;//!!!! size
-		
-		layers[layers.size() - 1]->lastLayerDelta(correctActivations);
-		for (size_t i = layers.size() - 1; i > 0; i--)
-		{
-			previousErrors = layers[i]->layerDelta(layers[i-1]);// ?
-			layers[i - 1]->set_errors(previousErrors);
-		}
-		
-	}
+	//void net::backPropogation(vector<double> &correctActivations) {
+	//	vector<double> previousErrors;//!!!! size
+	//	
+	//	layers[layers.size() - 1]->lastLayerDelta(correctActivations);
+	//	for (size_t i = layers.size() - 1; i > 0; i--)
+	//	{
+	//		previousErrors = layers[i]->layerDelta(layers[i-1]);// ?
+	//		layers[i - 1]->set_errors(previousErrors);
+	//	}
+	//	
+	//}
 	const vector<double> net::getResult() {
 		return layers.back()->get_layer_activations();
+	}
+
+	vector<Layer*>& net::get_layers()
+	{
+		return layers;
 	}
 
 	void net::firstInit(){
@@ -42,21 +47,16 @@
 			layers[i]->firstInitOfLayer();
 		}
 	}
-
-	void saveInFile(net &obj,const char * filename)
+	void saveInFile(net &obj, const char * filename)
 	{
 		ofstream fout(filename);
 		boost::archive::text_oarchive oa(fout);
 		oa << obj;
-		//fout.close();
 	}
-
 	void loadFromFile(net & obj, const char * filename)
 	{
 		std::ifstream fin(filename);
 		boost::archive::text_iarchive ia(fin);
-
-		// restore the schedule from the archive
 		ia >> obj;
 	}
 

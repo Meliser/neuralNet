@@ -32,6 +32,6 @@ private:
 	void serialize(Archive & ar, const unsigned int version)
 	{
 		ar & boost::serialization::base_object<inputNeuron>(*this);
-		ar & weights & bias & z;// static variables?
+		ar & weights & bias & z;// static variables and z?
 	}
 };
