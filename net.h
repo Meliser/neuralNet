@@ -13,7 +13,6 @@ public:
 	net(initializer_list<int> &&ls);
 	~net();
 	void feedForward(vector<double> &inputActivations);
-	//void backPropogation(vector<double> &correctActivations);
 	const vector<double> getResult();
 	vector<Layer*>& get_layers();
 	void firstInit();

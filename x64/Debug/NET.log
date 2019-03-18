@@ -1,2 +1,10 @@
-﻿  main.cpp
+﻿  Layer.cpp
+  main.cpp
+  net.cpp
+  Trainer.cpp
+  Создание кода...
+     ╤ючфрхЄё  сшсышюЄхър C:\Users\╧юы№чютрЄхы№\source\repos\NET\x64\Debug\NET.lib ш юс·хъЄ C:\Users\╧юы№чютрЄхы№\source\repos\NET\x64\Debug\NET.exp
+Timer.obj : warning LNK4099: "vc141.pdb" PDB эх эрщфхэ ё "Timer.obj" шыш эр "C:\Users\╧юы№чютрЄхы№\source\repos\NET\x64\Debug\vc141.pdb"; ъюьяюэютър юс·хъЄр т√яюыэ хЄё  ъръ яЁш юЄёєЄёЄтшш юЄырфюўэ√ї фрээ√ї
+neuron.obj : warning LNK4099: "vc141.pdb" PDB эх эрщфхэ ё "neuron.obj" шыш эр "C:\Users\╧юы№чютрЄхы№\source\repos\NET\x64\Debug\vc141.pdb"; ъюьяюэютър юс·хъЄр т√яюыэ хЄё  ъръ яЁш юЄёєЄёЄтшш юЄырфюўэ√ї фрээ√ї
+inputNeuron.obj : warning LNK4099: "vc141.pdb" PDB эх эрщфхэ ё "inputNeuron.obj" шыш эр "C:\Users\╧юы№чютрЄхы№\source\repos\NET\x64\Debug\vc141.pdb"; ъюьяюэютър юс·хъЄр т√яюыэ хЄё  ъръ яЁш юЄёєЄёЄтшш юЄырфюўэ√ї фрээ√ї
   NET.vcxproj -> C:\Users\Пользователь\source\repos\NET\x64\Debug\NET.exe

@@ -21,17 +21,6 @@
 			layers[i]->forward(layers[i - 1]);
 		}
 	}
-	//void net::backPropogation(vector<double> &correctActivations) {
-	//	vector<double> previousErrors;//!!!! size
-	//	
-	//	layers[layers.size() - 1]->lastLayerDelta(correctActivations);
-	//	for (size_t i = layers.size() - 1; i > 0; i--)
-	//	{
-	//		previousErrors = layers[i]->layerDelta(layers[i-1]);// ?
-	//		layers[i - 1]->set_errors(previousErrors);
-	//	}
-	//	
-	//}
 	const vector<double> net::getResult() {
 		return layers.back()->get_layer_activations();
 	}

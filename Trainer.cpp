@@ -28,11 +28,11 @@ void Trainer::backPropogation()
 			data_addr = copy_data_addr;
 			activations_addr = copy_activations_addr;
 			std::cout << "current epoch: " << i << std::endl;
-			for (size_t i = 0; i < 10000; i++)
+			for (size_t j = 0; j < 10000; j++)
 			{
-				for (size_t i = 0; i < 28 * 28; i++)
+				for (size_t k = 0; k < 28 * 28; k++)
 				{
-					input[i] = shrinky(*data_addr);
+					input[k] = shrinky(*data_addr);
 					data_addr++;
 				}
 				netToTrain.feedForward(input);
@@ -40,13 +40,16 @@ void Trainer::backPropogation()
 				
 				correctActivations[*activations_addr] = 1;
 				layers[layers.size() - 1]->lastLayerDelta(correctActivations);
-				for (size_t i = layers.size() - 1; i > 0; i--) {
-					previousErrors = layers[i]->layerDelta(layers[i - 1]);// ?
-					layers[i - 1]->set_errors(previousErrors);
+				
+				for (size_t k = layers.size() - 1; k > 0; k--) {
+					previousErrors = layers[k]->layerDelta(layers[k - 1]);// ?
+					layers[k - 1]->set_errors(previousErrors);
 				}
 				activations_addr++;
+				//std::cout << j <<  " inner cost: " << this->costFunction() << std::endl;
+				//std::cout << j << endl;
 			}
-			std::cout<<"cost: "<<this->costFunction() << std::endl;
+			std::cout << "cost: " << this->costFunction() << std::endl;
 		}
 }
 
