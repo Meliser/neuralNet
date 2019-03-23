@@ -6,7 +6,7 @@
 #include <numeric>
 #include <iostream>
 using namespace boost::interprocess;
-double shrinky(double x, double in_min, double in_max, double out_min, double out_max);
+double shrink(double x, double in_min, double in_max, double out_min, double out_max);
 class Trainer
 {
 public:

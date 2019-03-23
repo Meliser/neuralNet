@@ -11,7 +11,7 @@ Trainer::~Trainer()
 	delete region;
 	delete region2;
 }
-double shrinky(double x, double in_min = 0, double in_max = 255, double out_min = 0, double out_max = 1)
+double shrink(double x, double in_min = 0, double in_max = 255, double out_min = 0, double out_max = 1)
 {
 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
@@ -32,7 +32,7 @@ void Trainer::backPropogation()
 			{
 				for (size_t k = 0; k < 28 * 28; k++)
 				{
-					input[k] = shrinky(*data_addr);
+					input[k] = shrink(*data_addr);
 					data_addr++;
 				}
 				netToTrain.feedForward(input);
